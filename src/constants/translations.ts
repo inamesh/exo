@@ -3,12 +3,6 @@
  * CONSTANTS FTW!
  */
 
-
-export const LANGUAGES: Array<Language> = [
-    { locale: 'en_US', displayName: 'EN' },
-    { locale: 'el_GR', displayName: 'ΕΛ' },
-]
-
 export const TRANSLATIONS: Translations = {
     en_US: {
         title:      'Stay Home!',
@@ -90,9 +84,3 @@ export interface LocalContent {
 export type Translations = {
     [locale: string]: LocalContent,
 }
-
-
-export type Language = {
-    locale: string,
-    displayName: string,
-};
