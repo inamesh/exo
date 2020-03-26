@@ -1,0 +1,115 @@
+@import "base/variables";
+
+@mixin epic-sides() { // https://codepen.io/MichaelArestad/pen/qltuk
+    position: relative;
+    z-index: 1;
+
+    &:before {
+        position: absolute;
+        content: "";
+        display: block;
+        top: 0;
+        z-index: -1;
+        @content;
+    }
+}
+.shoop {
+    //max-width: 800px;
+    //margin: 0 auto;
+    //padding: 60px 30px;
+    //background: #032429;
+    //@include epic-sides() //{background: inherit;}
+    text-align: center;
+    
+    // &:first-child {
+    //   padding: 40px 10px;
+    //   background: black;
+    // }
+    // &:nth-child(2){
+    //   //background: $base;
+    // }
+
+    
+    span {
+      position: relative;
+      display: inline-block;
+      margin-inline-end: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+
+
+
+.balloon {
+    // As suggested by https://twitter.com/dbox/status/365888496486985728
+    display: inline-block;
+    width: 255px;
+    padding: 10px 0 10px 25px;
+    font-family: "Open Sans", sans;
+    font-weight: 400;
+    color: $treeLight;
+    //background: #efefef;
+    border: 0;
+    border-radius: 5px;
+    outline: 0;
+    text-indent: 80px; // Arbitrary.
+    transition: all .3s ease-in-out;
+    
+    &::-webkit-input-placeholder {
+      //color: #efefef;
+      text-indent: 0;
+      font-weight: 300;
+    }
+  
+    + label {
+      display: inline-block;
+      position: absolute;
+      top: 8px;
+      left: 0;
+      bottom: 8px;
+      padding: 5px 15px;
+      //color: #032429;
+      font-size: 11px;
+      font-weight: 700;
+      //text-transform: uppercase;
+      text-shadow: 0 1px 0 rgba(19,74,70,0);
+      transition: all .3s ease-in-out;
+      border-radius: 3px;
+      //background: rgba(122,184,147,0);
+      
+      &:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        top: 100%;
+        left: 50%;
+        margin-left: -3px;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 3px solid rgba(122,184,147,0);
+        transition: all .3s ease-in-out;
+      }
+    }
+  }
+  .balloon:focus,
+  .balloon:active {
+    color: $treeDark;
+    text-indent: 0;
+    //background: #fff;
+    
+    &::-webkit-input-placeholder {
+      color: #aaa;
+    }
+    + label {
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(19,74,70,.4);
+      background: $treeLight;
+      transform: translateY(-40px);
+      
+      &:after {
+        border-top: 4px solid $treeLight;
+      }
+    }
+  }

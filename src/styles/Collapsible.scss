@@ -39,7 +39,7 @@
   
     &:after {
       font-family: 'FontAwesome';
-      content: '⛛';
+      content: '▽';
       position: absolute;
       right: 10px;
       top: 10px;
@@ -75,4 +75,29 @@
     font-size: 12px;
     background-color: #CBB700;
     color: black;
+  }
+
+
+  .button {
+    background-color: $treeLight;  
+    border-radius: 10px;
+    color: white;
+    padding: .5em;
+    text-decoration: none;
+  }
+  
+  .button:focus,
+  .button:hover {
+    background-color: $treeDark;
+    color: White;
+  }
+  
+  .content {
+    display: none;
+    margin: 1em 0;
+  }
+  
+  .content.active,
+  .no-js .content {
+    display: block;
   }

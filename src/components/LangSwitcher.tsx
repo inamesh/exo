@@ -3,7 +3,7 @@ import {Language, LANGUAGES} from '../constants/languages';
 
 interface Props{
     locale: string, 
-    setLanguage: Function,
+    setLanguage: (locale:string) => void,
 }
 
 export default function LangSwitcher (props: Props){
@@ -16,7 +16,7 @@ export default function LangSwitcher (props: Props){
                             key={i}
                             className = 'lang'
                             style={{ fontWeight: (props.locale === language.locale ? 'bold' : 'normal') }}
-                            onClick={() => props.setLanguage(language.locale)}
+                            onClick={()=>props.setLanguage(language.locale)}
                         >
                         {language.displayName}
                         </button>
