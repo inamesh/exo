@@ -14,21 +14,7 @@
     }
 }
 .shoop {
-    //max-width: 800px;
-    //margin: 0 auto;
-    //padding: 60px 30px;
-    //background: #032429;
-    //@include epic-sides() //{background: inherit;}
     text-align: center;
-    
-    // &:first-child {
-    //   padding: 40px 10px;
-    //   background: black;
-    // }
-    // &:nth-child(2){
-    //   //background: $base;
-    // }
-
     
     span {
       position: relative;
@@ -37,9 +23,6 @@
       margin-bottom: 10px;
     }
   }
-
-
-
 
 .balloon {
     // As suggested by https://twitter.com/dbox/status/365888496486985728

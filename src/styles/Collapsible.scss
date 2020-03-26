@@ -29,9 +29,9 @@
     text-decoration: none;
     color: $black;
     position: relative;
-    border: 1px solid #f49ba1;
+    border: 1px solid $pinkHouse;
     padding: 10px;
-    background: #f49ba1;
+    background: $pinkHouse;
     //color: black;
     border-radius: 5px;
     cursor: pointer;
@@ -58,25 +58,6 @@
       background-color: grey;
     }
   }
-  
-  .CustomTriggerCSS {
-    background-color: lightcoral;
-    transition: background-color 200ms ease;
-    
-    
-  }
-  
-  .CustomTriggerCSS--open {
-    background-color: darkslateblue;
-  }
-  
-  .Collapsible__custom-sibling {
-    padding: 5px;
-    font-size: 12px;
-    background-color: #CBB700;
-    color: black;
-  }
-
 
   .button {
     background-color: $treeLight;  
