@@ -1,0 +1,78 @@
+// The main container element
+.Collapsible {
+    background-color: $base;
+  }
+  
+  
+  //The content within the collaspable area
+  .Collapsible__contentInner {
+    padding: 10px;
+    padding-bottom: 20px;
+    border: 1px solid $treeDark;
+    border-top: 0;
+    border-radius: 5px;
+    p {
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 20px;
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  //The link which when clicked opens the collapsable area
+  .Collapsible__trigger {
+    display: block;
+    font-weight: 400;
+    text-decoration: none;
+    color: $black;
+    position: relative;
+    border: 1px solid #f49ba1;
+    padding: 10px;
+    background: #f49ba1;
+    //color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  
+    &:after {
+      font-family: 'FontAwesome';
+      content: '⛛';
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      display: block;
+      transition: transform 300ms;
+    }
+  
+    &.is-open {
+      &:after {
+        transform: rotateZ(180deg);
+      }
+    }
+  
+    &.is-disabled {
+      opacity: 0.5;
+      background-color: grey;
+    }
+  }
+  
+  .CustomTriggerCSS {
+    background-color: lightcoral;
+    transition: background-color 200ms ease;
+    
+    
+  }
+  
+  .CustomTriggerCSS--open {
+    background-color: darkslateblue;
+  }
+  
+  .Collapsible__custom-sibling {
+    padding: 5px;
+    font-size: 12px;
+    background-color: #CBB700;
+    color: black;
+  }

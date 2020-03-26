@@ -14,6 +14,7 @@ export default function LangSwitcher (props: Props){
                     return(
                         <button
                             key={i}
+                            className = 'lang'
                             style={{ fontWeight: (props.locale === language.locale ? 'bold' : 'normal') }}
                             onClick={() => props.setLanguage(language.locale)}
                         >
