@@ -3,6 +3,9 @@ import Collapsible from 'react-collapsible';
 import {isIOS} from 'react-device-detect';
 import LangSwitcher from '../components/LangSwitcher';
 import LocalValue from '../components/LocalValue';
+import Footer from '../components/Footer';
+import UserData from './UserData';
+
 
 import '../styles/App.scss';
 import {DEFAULT_LOCALE} from '../constants/languages';
@@ -10,7 +13,7 @@ import {TRANSLATIONS, REASONS, REASONS_LONG, NUM_REASONS} from '../constants/tra
 import {PHONE_NUMBER, IPHONE_SEPARATOR, ANDROID_SEPARATOR, NAMEKEY, ADDRESSKEY} from '../constants/general';
 
 import menoumeSpiti from '../images/MenoumeSpiti-banner.png';
-import UserData from './UserData';
+
 
 interface Props{}
 
@@ -104,17 +107,26 @@ export default class App extends Component <Props,State> {
     const collapsibles=[];
     
     for (let i:number=0; i<NUM_REASONS; i++){
-      collapsibles.push(
-        <Collapsible trigger={TRANSLATIONS[locale][REASONS[i]]} key={i}>
-          <p>{TRANSLATIONS[locale][REASONS_LONG[i]]}</p>
-          <a 
-            href={this.messageComposer(i+1)} 
-            className="button" role="button"
-            onClick = {this.storeUserData}
-          >{TRANSLATIONS[locale]['buttonText']}</a>
-        </Collapsible>
-      );
-    }
+      if (userName && userAddress){
+        collapsibles.push(
+          <Collapsible trigger={TRANSLATIONS[locale][REASONS[i]]} key={i}>
+            <p>{TRANSLATIONS[locale][REASONS_LONG[i]]}</p>
+            <a 
+              href={this.messageComposer(i+1)} 
+              className="button" role="button"
+              onClick = {this.storeUserData}
+            >{TRANSLATIONS[locale]['buttonText']}</a>
+          </Collapsible>
+        );
+      } else{
+        collapsibles.push(
+          <Collapsible trigger={TRANSLATIONS[locale][REASONS[i]]} key={i}>
+            <p>{TRANSLATIONS[locale][REASONS_LONG[i]]}</p>
+          </Collapsible>
+        );
+      };
+
+    };
 
     return (
       <>
@@ -124,7 +136,7 @@ export default class App extends Component <Props,State> {
       <div className='headerImg'>
         <img src={menoumeSpiti} alt="#menoumespiti" width = '100%'/>
       </div>
-      <div className="row">
+      <div className="main">
         <div className="intro">
 
           <h2><LocalValue locale={locale} keyString='subtitle'/></h2>
@@ -146,6 +158,10 @@ export default class App extends Component <Props,State> {
           {collapsibles}
         </div>
       </div>
+
+      <footer>
+        <Footer />
+      </footer>
       </>
     );
   }

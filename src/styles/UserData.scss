@@ -32,15 +32,15 @@
     font-family: "Open Sans", sans;
     font-weight: 400;
     color: $treeLight;
-    //background: #efefef;
+    background: #efefef;
     border: 0;
     border-radius: 5px;
     outline: 0;
-    text-indent: 80px; // Arbitrary.
+    text-indent: 80px; 
     transition: all .3s ease-in-out;
     
     &::-webkit-input-placeholder {
-      //color: #efefef;
+      color: #efefef;
       text-indent: 0;
       font-weight: 300;
     }
@@ -52,14 +52,13 @@
       left: 0;
       bottom: 8px;
       padding: 5px 15px;
-      //color: #032429;
+      color: #032429;
       font-size: 11px;
       font-weight: 700;
-      //text-transform: uppercase;
       text-shadow: 0 1px 0 rgba(19,74,70,0);
       transition: all .3s ease-in-out;
       border-radius: 3px;
-      //background: rgba(122,184,147,0);
+      background: rgba(122,184,147,0);
       
       &:after {
         position: absolute;
@@ -80,7 +79,7 @@
   .balloon:active {
     color: $treeDark;
     text-indent: 0;
-    //background: #fff;
+    background: #fff;
     
     &::-webkit-input-placeholder {
       color: #aaa;

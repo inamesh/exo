@@ -44,7 +44,7 @@
       right: 10px;
       top: 10px;
       display: block;
-      transition: transform 300ms;
+      transition: transform .01s;
     }
   
     &.is-open {
