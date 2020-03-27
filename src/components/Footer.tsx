@@ -5,8 +5,8 @@ import React from 'react';
 
 export default function Footer () {
     return (
-        <div>
-            100% <a href='https://github.com/inamesh/exo' target='_blank' rel='noopener noreferrer'>open source software</a>. NO tracking, NO cookies. Built with 🙏 and 😍 in Athens, Greece
+        <div className='footerText'>
+            100% free and <a href='https://github.com/inamesh/exo' target='_blank' rel='noopener noreferrer'>open source software</a>. NO tracking, NO cookies. Built with 🙏 and 😍 in Athens, Greece
         </div>
     )
 }

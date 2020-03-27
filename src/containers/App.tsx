@@ -69,25 +69,20 @@ export default class App extends Component <Props,State> {
 
   componentDidMount = () => {
     if(!this.state.userName && !this.state.userAddress){
-      console.log('getting local storage');
       let name = localStorage.getItem(NAMEKEY);
       let address = localStorage.getItem(ADDRESSKEY);
       if(!name){
-        console.log('name not found');
         name='';
       } else{
-        console.log('name',name);
       }
       
       if (!address){
-        console.log('address not found');
         address='';
       }
       if (name || address){
         this.setState({userName:name, userAddress:address, isDirty:false});
       }
     }
-    console.log ('from didmount', this.state);
   }
 
   messageComposer = (reason: number): string =>  {
@@ -98,7 +93,6 @@ export default class App extends Component <Props,State> {
       console.error('Unknown Reason');
       return '';
     }
-    console.log(`sms:${PHONE_NUMBER}${separator}body=${reason} ${userName} ${userAddress}`);
     return `sms:${PHONE_NUMBER}${separator}body=${reason} ${userName} ${userAddress}`;
   }
   
