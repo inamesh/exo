@@ -10,7 +10,7 @@ import UserData from './UserData';
 import '../styles/App.scss';
 import {DEFAULT_LOCALE} from '../constants/languages';
 import {TRANSLATIONS, REASONS, REASONS_LONG, NUM_REASONS} from '../constants/translations';
-import {PHONE_NUMBER, IPHONE_SEPARATOR, ANDROID_SEPARATOR, NAMEKEY, ADDRESSKEY, LOCALEKEY} from '../constants/general';
+import {PHONE_NUMBER, IPHONE_SEPARATOR, ANDROID_SEPARATOR, NAMEKEY, ADDRESSKEY, LOCALEKEY, INSTRUCTIONSKEY} from '../constants/general';
 
 import menoumeSpiti from '../images/MenoumeSpiti-banner.png';
 
@@ -22,6 +22,7 @@ interface State {
   userName: string,
   userAddress: string,
   isDirty: boolean,
+  showInstructions: boolean,
 }
 
 export default class App extends Component <Props,State> {
@@ -33,6 +34,7 @@ export default class App extends Component <Props,State> {
       userName: '',
       userAddress: '',
       isDirty: false,
+      showInstructions: true,
     } as State;
 
   }
@@ -60,15 +62,20 @@ export default class App extends Component <Props,State> {
   }
 
   componentDidMount = () => {
-    let currentLocale = this.state.locale; 
-    let storedLocale = localStorage.getItem(LOCALEKEY);
-
+    const currentLocale = this.state.locale; 
+    const storedLocale = localStorage.getItem(LOCALEKEY);
+    const seenInstructions = localStorage.getItem(INSTRUCTIONSKEY);
+    
     if(!storedLocale){
       localStorage.setItem(LOCALEKEY,currentLocale);
     } else {
       if (storedLocale !== currentLocale){
         this.setState({locale: storedLocale});
       } 
+    }
+
+    if(seenInstructions){
+      this.setState({showInstructions: false});
     }
 
     if(!this.state.userName && !this.state.userAddress){
@@ -92,19 +99,20 @@ export default class App extends Component <Props,State> {
       const {locale, userName, userAddress} = this.state;
       const separator: string = isIOS?IPHONE_SEPARATOR:ANDROID_SEPARATOR;
 
-      if (this.state.isDirty){
-        localStorage.setItem(NAMEKEY,this.state.userName);
-        localStorage.setItem(ADDRESSKEY, this.state.userAddress);
-        localStorage.setItem(LOCALEKEY, this.state.locale);
-        this.setState({isDirty:false});
-      }
-
       if (reason < 1 || reason > 6){
         console.error('Unknown Reason');
         return ;
       }
       
       if (userName && userAddress) {
+        this.setState({showInstructions:false});
+        if (this.state.isDirty){
+          localStorage.setItem(NAMEKEY,this.state.userName);
+          localStorage.setItem(ADDRESSKEY, this.state.userAddress);
+          localStorage.setItem(LOCALEKEY, this.state.locale);
+          localStorage.setItem(INSTRUCTIONSKEY, 'true');
+          this.setState({isDirty:false});
+        }
         window.open(`sms:${PHONE_NUMBER}${separator}body=${reason} ${userName} ${userAddress}`, '_self');
       } else {
         window.alert(`${TRANSLATIONS[locale]['validationError']}`);
@@ -112,21 +120,31 @@ export default class App extends Component <Props,State> {
   }
   
   render() {
-    const {locale, userName, userAddress} = this.state;
+    const {locale, userName, userAddress, showInstructions} = this.state;
     const collapsibles=[];
+    let instructions: JSX.Element = <></>;
     
     for (let i:number=0; i<NUM_REASONS; i++){
       collapsibles.push(
         <Collapsible trigger={TRANSLATIONS[locale][REASONS[i]]} key={i}>
           <p>{TRANSLATIONS[locale][REASONS_LONG[i]]}</p>
           <button 
-            //href='#SmsComposer'
-            className="button" //role="button"
+            className="button" 
             onClick = {() => this.composeSMS(i+1)}
           >{TRANSLATIONS[locale]['buttonText']}</button>
         </Collapsible>
       );
     };
+
+    if(showInstructions){
+      instructions = 
+      <p >
+        <LocalValue locale = {locale} keyString = 'intro'/><br /><br />
+        <LocalValue locale = {locale} keyString = 'step1'/><br />
+        <LocalValue locale = {locale} keyString = 'step2'/><br />
+        <LocalValue locale = {locale} keyString = 'step3'/>
+      </p>
+    }
 
     return (
       <>
@@ -138,14 +156,8 @@ export default class App extends Component <Props,State> {
       </div>
       <div className="main">
         <div className="intro">
-
           <h2><LocalValue locale={locale} keyString='subtitle'/></h2>
-          <p>
-            <LocalValue locale = {locale} keyString = 'intro'/><br /><br />
-            <LocalValue locale = {locale} keyString = 'step1'/><br />
-            <LocalValue locale = {locale} keyString = 'step2'/><br />
-            <LocalValue locale = {locale} keyString = 'step3'/>
-          </p>
+          {instructions}
         </div>
         <UserData 
           locale={locale} 

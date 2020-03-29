@@ -7,12 +7,12 @@
   //The content within the collaspable area
   .Collapsible__contentInner {
     padding: 10px;
-    padding-bottom: 15px;
+    //padding-bottom: 15px;
     border: 1px solid $treeDark;
     border-top: 0;
     border-radius: 5px;
     p {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       font-size: 14px;
       line-height: 20px;
   
@@ -61,10 +61,12 @@
 
   .button {
     background-color: $treeLight;  
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
     padding: .5em;
     text-decoration: none;
+    border: 1px;
+    border-color: $treeLight;
   }
   
   .button:focus,
