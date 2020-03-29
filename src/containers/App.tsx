@@ -95,31 +95,45 @@ export default class App extends Component <Props,State> {
     }
     return `sms:${PHONE_NUMBER}${separator}body=${reason} ${userName} ${userAddress}`;
   }
+
+  composeSMS = (reason:number): void => {
+      const {userName, userAddress} = this.state;
+      const separator: string = isIOS?IPHONE_SEPARATOR:ANDROID_SEPARATOR;
+
+      if (reason < 1 || reason > 6){
+        console.error('Unknown Reason');
+        return ;
+      }
+      
+      if (this.state.isDirty){
+        localStorage.setItem(NAMEKEY,this.state.userName);
+        localStorage.setItem(ADDRESSKEY, this.state.userAddress);
+        this.setState({isDirty:false});
+      }
+      
+      if (userName && userAddress) {
+        window.open(`sms:${PHONE_NUMBER}${separator}body=${reason} ${userName} ${userAddress}`, '_self');
+      } else {
+        window.alert(`Can't help you without a Name and Address!`);
+      }
+  }
   
   render() {
     const {locale, userName, userAddress} = this.state;
     const collapsibles=[];
     
     for (let i:number=0; i<NUM_REASONS; i++){
-      if (userName && userAddress){
-        collapsibles.push(
-          <Collapsible trigger={TRANSLATIONS[locale][REASONS[i]]} key={i}>
-            <p>{TRANSLATIONS[locale][REASONS_LONG[i]]}</p>
-            <a 
-              href={this.messageComposer(i+1)} 
-              className="button" role="button"
-              onClick = {this.storeUserData}
-            >{TRANSLATIONS[locale]['buttonText']}</a>
-          </Collapsible>
-        );
-      } else{
-        collapsibles.push(
-          <Collapsible trigger={TRANSLATIONS[locale][REASONS[i]]} key={i}>
-            <p>{TRANSLATIONS[locale][REASONS_LONG[i]]}</p>
-          </Collapsible>
-        );
-      };
-
+      collapsibles.push(
+        <Collapsible trigger={TRANSLATIONS[locale][REASONS[i]]} key={i}>
+          <p>{TRANSLATIONS[locale][REASONS_LONG[i]]}</p>
+          <a 
+            //href={this.messageComposer(i+1)} 
+            href='#'
+            className="button" role="button"
+            onClick = {() => this.composeSMS(i+1)}
+          >{TRANSLATIONS[locale]['buttonText']}</a>
+        </Collapsible>
+      );
     };
 
     return (
