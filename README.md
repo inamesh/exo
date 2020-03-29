@@ -23,8 +23,8 @@ I will be happy to accept pull requests, especially for additional translations.
 3. Add your translations to the TRANSLATIONS object in src\constants\translations.ts
 
 ## Credits
-Made with create-react-app, hosted on Zeit.
-Privacy-first analytics by Fathom (number of users & visits only; no other data), self-hosted on Digital Ocean.
+Made with create-react-app, hosted on <a href="https://zeit.co/" target="_blank">Zeit</a>.
+Privacy-first analytics by <a href="https://usefathom.com/" target="_blank">Fathom</a> (number of users & visits only; no other data), self-hosted on Digital Ocean.
 
 Input styling from code shared by <a href="https://codepen.io/jordanoaragao/pen/teqFw" target="_blank">Jordano Aragão</a>
 The rest is in the packages!
