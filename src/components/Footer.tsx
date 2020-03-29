@@ -6,8 +6,7 @@ import React from 'react';
 export default function Footer () {
     return (
         <div className='footerText'>
-            100% free and <a href='https://github.com/inamesh/exo' target='_blank' rel='noopener noreferrer'>open source software</a>. NO tracking, NO cookies. Built with 🙏 and 😍 in Athens, Greece
+            All your data is saved and processed locally on your device. <strong>NO tracking, NO cookies</strong>. <br /> 100% free and <a href='https://github.com/inamesh/exo' target='_blank' rel='noopener noreferrer'>open source software</a>. Built with 🙏 and ❤️ in Athens, Greece. Please contact me on <a href='https://twitter.com/inamesh' target='_blank' rel='noopener noreferrer'>Twitter</a> with any comments/ suggestions.
         </div>
     )
 }
-        

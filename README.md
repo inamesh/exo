@@ -15,9 +15,16 @@ The app also remembers the user's name and address so that they do not have to e
 Official process and reason codes can be found on <a href="https://forma.gov.gr/#sms" target="_blank">forma.gov.gr</a>
 
 ### Contribute
-I will accept pull requests, just make sure you include a summary and screenshots (if necessary).
+I will be happy to accept pull requests, especially for additional translations.
+1. Add your locale string as a constant in src\constants\languages.ts 
+    (eg: `export const ELGR:string = 'el_GR';`) 
+2. Add a display name for the language to the `LANGUAGE` array.
+    (eg: `{ locale: ELGR, displayName: 'ΕΛ' },`)
+3. Add your translations to the TRANSLATIONS object in src\constants\translations.ts
 
 ## Credits
-Made with create-react-app
+Made with create-react-app, hosted on Zeit.
+Privacy-first analytics by Fathom (number of users & visits only; no other data), self-hosted on Digital Ocean.
 
-TODO: Add credits for the styling sources, etc.
+Input styling from code shared by <a href="https://codepen.io/jordanoaragao/pen/teqFw" target="_blank">Jordano Aragão</a>
+The rest is in the packages!
