@@ -4,4 +4,5 @@ export const ANDROID_SEPARATOR = '?';
 
 export const NAMEKEY = 'userName';
 export const ADDRESSKEY = 'userAddress';
-export const LOCALEKEY = 'selectedLocale'
+export const LOCALEKEY = 'selectedLocale';
+export const INSTRUCTIONSKEY = 'seenInstructions';
