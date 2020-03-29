@@ -10,7 +10,7 @@ import UserData from './UserData';
 import '../styles/App.scss';
 import {DEFAULT_LOCALE} from '../constants/languages';
 import {TRANSLATIONS, REASONS, REASONS_LONG, NUM_REASONS} from '../constants/translations';
-import {PHONE_NUMBER, IPHONE_SEPARATOR, ANDROID_SEPARATOR, NAMEKEY, ADDRESSKEY} from '../constants/general';
+import {PHONE_NUMBER, IPHONE_SEPARATOR, ANDROID_SEPARATOR, NAMEKEY, ADDRESSKEY, LOCALEKEY} from '../constants/general';
 
 import menoumeSpiti from '../images/MenoumeSpiti-banner.png';
 
@@ -38,7 +38,7 @@ export default class App extends Component <Props,State> {
   }
 
   langChangeHandler = (locale: string) => {
-   this.setState({locale: locale});
+   this.setState({locale: locale, isDirty:true});
   }  
 
   nameChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,62 +59,55 @@ export default class App extends Component <Props,State> {
     }
   }
 
-  storeUserData = () => {
-    if (this.state.isDirty){
-      localStorage.setItem(NAMEKEY,this.state.userName);
-      localStorage.setItem(ADDRESSKEY, this.state.userAddress);
-      this.setState({isDirty:false});
-    }
-  }
-
   componentDidMount = () => {
+    let currentLocale = this.state.locale; 
+    let storedLocale = localStorage.getItem(LOCALEKEY);
+
+    if(!storedLocale){
+      localStorage.setItem(LOCALEKEY,currentLocale);
+    } else {
+      if (storedLocale !== currentLocale){
+        this.setState({locale: storedLocale});
+      } 
+    }
+
     if(!this.state.userName && !this.state.userAddress){
       let name = localStorage.getItem(NAMEKEY);
-      let address = localStorage.getItem(ADDRESSKEY);
       if(!name){
         name='';
-      } else{
-      }
+      }    
       
+      let address = localStorage.getItem(ADDRESSKEY);
       if (!address){
         address='';
       }
+
       if (name || address){
         this.setState({userName:name, userAddress:address, isDirty:false});
       }
     }
   }
 
-  messageComposer = (reason: number): string =>  {
-    const {userName, userAddress} = this.state;
-    const separator: string = isIOS?IPHONE_SEPARATOR:ANDROID_SEPARATOR;
-
-    if (reason < 1 || reason > 6){
-      console.error('Unknown Reason');
-      return '';
-    }
-    return `sms:${PHONE_NUMBER}${separator}body=${reason} ${userName} ${userAddress}`;
-  }
-
   composeSMS = (reason:number): void => {
-      const {userName, userAddress} = this.state;
+      const {locale, userName, userAddress} = this.state;
       const separator: string = isIOS?IPHONE_SEPARATOR:ANDROID_SEPARATOR;
+
+      if (this.state.isDirty){
+        localStorage.setItem(NAMEKEY,this.state.userName);
+        localStorage.setItem(ADDRESSKEY, this.state.userAddress);
+        localStorage.setItem(LOCALEKEY, this.state.locale);
+        this.setState({isDirty:false});
+      }
 
       if (reason < 1 || reason > 6){
         console.error('Unknown Reason');
         return ;
       }
       
-      if (this.state.isDirty){
-        localStorage.setItem(NAMEKEY,this.state.userName);
-        localStorage.setItem(ADDRESSKEY, this.state.userAddress);
-        this.setState({isDirty:false});
-      }
-      
       if (userName && userAddress) {
         window.open(`sms:${PHONE_NUMBER}${separator}body=${reason} ${userName} ${userAddress}`, '_self');
       } else {
-        window.alert(`Can't help you without a Name and Address!`);
+        window.alert(`${TRANSLATIONS[locale]['validationError']}`);
       }
   }
   
@@ -126,12 +119,11 @@ export default class App extends Component <Props,State> {
       collapsibles.push(
         <Collapsible trigger={TRANSLATIONS[locale][REASONS[i]]} key={i}>
           <p>{TRANSLATIONS[locale][REASONS_LONG[i]]}</p>
-          <a 
-            //href={this.messageComposer(i+1)} 
-            href='#'
-            className="button" role="button"
+          <button 
+            //href='#SmsComposer'
+            className="button" //role="button"
             onClick = {() => this.composeSMS(i+1)}
-          >{TRANSLATIONS[locale]['buttonText']}</a>
+          >{TRANSLATIONS[locale]['buttonText']}</button>
         </Collapsible>
       );
     };

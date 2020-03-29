@@ -28,6 +28,7 @@ export const TRANSLATIONS: Translations = {
         buttonText: '✉ Create SMS',
         tomName:    'Tom Hanks',
         tomAddress: 'Ermou 500, Athens 10563',
+        validationError: 'Name & address, please!',
     },
     el_GR: {
         title: 'Μένουμε σπίτι!',
@@ -53,6 +54,7 @@ export const TRANSLATIONS: Translations = {
         buttonText: '✉ Αποστολή SMS',
         tomName:    'Τομ Χάνκς',
         tomAddress: 'Ερμού 500, Αθήνα 10563',
+        validationError: 'Ονοματάκι και διεύθυνση παρακαλώ!',
     },
 };
 
@@ -88,6 +90,7 @@ export interface LocalContent {
     buttonText: string,
     tomName: string,
     tomAddress: string,
+    validationError: string,
 }
 
 export type Translations = {
