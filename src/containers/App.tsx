@@ -44,11 +44,9 @@ export default class App extends Component <Props,State> {
    document.documentElement.lang = tag;
    if (RTLTAGS.includes(tag)){
      document.documentElement.getElementsByClassName('main')[0].setAttribute('dir','rtl');
-     //document.documentElement.dir = 'rtl';
    } else {
-    //document.documentElement.dir = 'ltr';
     document.documentElement.getElementsByClassName('main')[0].setAttribute('dir','ltr');
-  }
+   }
   }  
 
   nameChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -144,7 +142,7 @@ export default class App extends Component <Props,State> {
       );
     };
 
-    if(true){
+    if(showInstructions){
       instructions = 
       <p >
         <LocalValue locale = {locale} keyString = 'intro'/><br /><br />
