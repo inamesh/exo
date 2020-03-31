@@ -4,10 +4,14 @@
 
 export const ENUS:string = 'en_US';
 export const ELGR:string = 'el_GR';
+export const AR:string = 'AR';
+
+export const RTLTAGS:string='ar,'
 
 export const LANGUAGES: Array<Language> = [
-    { locale: ENUS, displayName: 'EN' },
-    { locale: ELGR, displayName: 'ΕΛ' },
+    { locale: ENUS, displayName: 'EN', tag:'en' },
+    { locale: AR, displayName: 'AR',tag:'ar' },
+    { locale: ELGR, displayName: 'ΕΛ', tag: 'el' },
 ]
 
 export const DEFAULT_LOCALE = ELGR;
@@ -17,10 +21,9 @@ export const DEFAULT_LOCALE = ELGR;
  * Because.
  */
 
-
-
 export type Language = {
     locale: string,
     displayName: string,
+    tag: string,
 };
 

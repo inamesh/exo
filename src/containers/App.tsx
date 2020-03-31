@@ -8,7 +8,7 @@ import UserData from './UserData';
 
 
 import '../styles/App.scss';
-import {DEFAULT_LOCALE} from '../constants/languages';
+import {DEFAULT_LOCALE, RTLTAGS} from '../constants/languages';
 import {TRANSLATIONS, REASONS, REASONS_LONG, NUM_REASONS} from '../constants/translations';
 import {PHONE_NUMBER, IPHONE_SEPARATOR, ANDROID_SEPARATOR, NAMEKEY, ADDRESSKEY, LOCALEKEY, INSTRUCTIONSKEY} from '../constants/general';
 
@@ -39,8 +39,14 @@ export default class App extends Component <Props,State> {
 
   }
 
-  langChangeHandler = (locale: string) => {
+  langChangeHandler = (locale: string, tag:string) => {
    this.setState({locale: locale, isDirty:true});
+   document.documentElement.lang = tag;
+   if (RTLTAGS.includes(tag)){
+     document.documentElement.dir = 'rtl';
+   } else {
+    document.documentElement.dir = 'ltr';
+   }
   }  
 
   nameChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -136,7 +142,7 @@ export default class App extends Component <Props,State> {
       );
     };
 
-    if(showInstructions){
+    if(true){
       instructions = 
       <p >
         <LocalValue locale = {locale} keyString = 'intro'/><br /><br />
