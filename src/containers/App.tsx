@@ -8,7 +8,7 @@ import UserData from './UserData';
 
 
 import '../styles/App.scss';
-import {DEFAULT_LOCALE, RTLTAGS} from '../constants/languages';
+import {DEFAULT_LOCALE, RTLTAGS, LANGUAGES} from '../constants/languages';
 import {TRANSLATIONS, REASONS, REASONS_LONG, NUM_REASONS} from '../constants/translations';
 import {PHONE_NUMBER, IPHONE_SEPARATOR, ANDROID_SEPARATOR, NAMEKEY, ADDRESSKEY, LOCALEKEY, INSTRUCTIONSKEY} from '../constants/general';
 
@@ -76,7 +76,7 @@ export default class App extends Component <Props,State> {
       localStorage.setItem(LOCALEKEY,currentLocale);
     } else {
       if (storedLocale !== currentLocale){
-        this.setState({locale: storedLocale});
+        this.langChangeHandler(storedLocale, LANGUAGES.filter((lang) => lang.locale===storedLocale)[0].tag);
       } 
     }
 
