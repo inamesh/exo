@@ -59,6 +59,10 @@
     }
   }
 
+  .Collapsible__trigger:lang(ar){
+    padding-right: 40px;
+  }
+
   .button {
     background-color: $treeLight;  
     border-radius: 5px;

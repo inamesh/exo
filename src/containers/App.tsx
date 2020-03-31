@@ -43,10 +43,12 @@ export default class App extends Component <Props,State> {
    this.setState({locale: locale, isDirty:true});
    document.documentElement.lang = tag;
    if (RTLTAGS.includes(tag)){
-     document.documentElement.dir = 'rtl';
+     document.documentElement.getElementsByClassName('main')[0].setAttribute('dir','rtl');
+     //document.documentElement.dir = 'rtl';
    } else {
-    document.documentElement.dir = 'ltr';
-   }
+    //document.documentElement.dir = 'ltr';
+    document.documentElement.getElementsByClassName('main')[0].setAttribute('dir','ltr');
+  }
   }  
 
   nameChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
