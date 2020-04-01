@@ -24,6 +24,8 @@ I will be happy to accept pull requests, especially for additional translations.
 
 ## Credits
 Made with create-react-app, hosted on <a href="https://zeit.co/" target="_blank">Zeit</a>.
+Language switcher inspired by <a href="https://github.com/tvanro/react-redux-translation-example" target="_blank">tvanro</a>.
+
 Privacy-first analytics by <a href="https://usefathom.com/" target="_blank">Fathom</a> (number of users & visits only; no other data), self-hosted on Digital Ocean.
 
 Input styling from code shared by <a href="https://codepen.io/jordanoaragao/pen/teqFw" target="_blank">Jordano Aragão</a>
