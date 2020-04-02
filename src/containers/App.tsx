@@ -178,7 +178,7 @@ export default class App extends Component <Props,State> {
       </div>
 
       <footer>
-        <Footer />
+        <Footer locale={locale}/>
       </footer>
       </>
     );
