@@ -2,7 +2,9 @@ This is an open source project and I welcome contributions to make it better, fa
 
 ## Background
 In the 3rd week of March 2020, movement restrictions were imposed in Greece due to the rapid spread of coronavirus. 
+On 4th May, the restrictions were lifter.
 
+As of 7th Nov 2020, the restrictions are imposed once again. 
 All residents of Greece are required to send a message to the number 13033 (free of charge) with a reason code followed by their name and address before leaving their place of residence.
 
 ### Functionality
